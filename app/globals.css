@@ -1,0 +1,129 @@
+@config "../tailwind.config.ts";
+@source "../app/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../components/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../data/**/*.{js,ts,jsx,tsx,mdx}";
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-sora);
+  --font-body: var(--font-space-grotesk);
+
+  --color-background: #0B0B0B;
+  --color-foreground: #F4F1EC;
+  --color-surface: #1A1A1A;
+  --color-accent: #C7A46B;
+  --color-muted: #3E3E3E;
+
+  --animate-reveal: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root,
+:root.theme-dark,
+:root[data-theme="dark"] {
+  --color-background: #0B0B0B !important;
+  --color-foreground: #F4F1EC !important;
+  --color-surface: #1A1A1A !important;
+  --color-accent: #C7A46B !important;
+  --color-muted: #3E3E3E !important;
+}
+
+:root.theme-light,
+:root[data-theme="light"] {
+  --color-background: #FFFFFF !important;
+  --color-foreground: #111111 !important;
+  --color-surface: #F7F7F7 !important;
+  --color-accent: #8A5A22 !important;
+  --color-muted: #D0D0D0 !important;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+html.theme-transition,
+html.theme-transition * {
+  transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, fill 300ms ease, stroke 300ms ease;
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='6' cy='10' r='1' fill='white' opacity='0.25'/%3E%3Ccircle cx='30' cy='50' r='1' fill='white' opacity='0.2'/%3E%3Ccircle cx='80' cy='20' r='1' fill='white' opacity='0.2'/%3E%3Ccircle cx='100' cy='90' r='1' fill='white' opacity='0.2'/%3E%3Ccircle cx='55' cy='70' r='1' fill='white' opacity='0.2'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+.bg-paths svg {
+  color: #FFFFFF;
+}
+
+:root.theme-light .bg-paths svg,
+:root[data-theme="light"] .bg-paths svg {
+  color: #0F0F0F;
+}
+
+:root.theme-light .noise-overlay,
+:root[data-theme="light"] .noise-overlay {
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+}
+
+:root.theme-light [class*="text-white"],
+:root[data-theme="light"] [class*="text-white"] {
+  color: #111111 !important;
+}
+
+:root.theme-light [class*="border-white"],
+:root[data-theme="light"] [class*="border-white"] {
+  border-color: #E5E5E5 !important;
+}
+
+:root.theme-light [class*="bg-black"],
+:root[data-theme="light"] [class*="bg-black"] {
+  background-color: #FFFFFF !important;
+}
+
+:root.theme-light [class*="bg-surface"],
+:root[data-theme="light"] [class*="bg-surface"] {
+  background-color: #F7F7F7 !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+section[id] {
+  scroll-margin-top: 7rem;
+}
+
+.link-underline {
+  position: relative;
+  display: inline-flex;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms ease;
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
