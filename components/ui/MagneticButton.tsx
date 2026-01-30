@@ -3,8 +3,11 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import clsx from "clsx";
+import { HTMLMotionProps } from "framer-motion";
 
-type MagneticButtonProps = React.ComponentPropsWithoutRef<"a"> & {
+type MagneticButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  children: React.ReactNode;
+  className?: string;
   intensity?: number;
 };
 
@@ -37,14 +40,14 @@ export default function MagneticButton({
   return (
     <motion.a
       ref={ref}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-      style={{ x: springX, y: springY }}
       className={clsx(
         "inline-flex items-center gap-2 rounded-full border border-accent/40 px-6 py-3 text-xs uppercase tracking-[0.3em] text-accent transition-colors hover:bg-accent hover:text-black",
         className
       )}
-      {...props}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      style={{ x: springX, y: springY }}
+      {...(props as any)}
     >
       {children}
     </motion.a>
