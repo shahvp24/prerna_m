@@ -1,14 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 function FloatingPaths({ position }: { position: number }) {
-  const paths = Array.from({ length: 28 }, (_, i) => ({
+  const shouldReduceMotion = useReducedMotion();
+
+  // Reduced from 28 to 14 paths for better GPU performance
+  const paths = Array.from({ length: 14 }, (_, i) => ({
     id: i,
-    d: `M-${360 - i * 6 * position} -${180 + i * 5}C-${360 - i * 6 * position} -${180 + i * 5} -${300 - i * 6 * position} ${210 - i * 5} ${140 - i * 6 * position} ${330 - i * 5}C${600 - i * 6 * position} ${450 - i * 5} ${680 - i * 6 * position} ${860 - i * 5} ${680 - i * 6 * position} ${860 - i * 5}`,
-    width: 0.5 + i * 0.03,
-    opacity: 0.25 + i * 0.02,
-    duration: 18 + i * 0.6,
+    d: `M-${360 - i * 12 * position} -${180 + i * 10}C-${360 - i * 12 * position} -${180 + i * 10} -${300 - i * 12 * position} ${210 - i * 10} ${140 - i * 12 * position} ${330 - i * 10}C${600 - i * 12 * position} ${450 - i * 10} ${680 - i * 12 * position} ${860 - i * 10} ${680 - i * 12 * position} ${860 - i * 10}`,
+    width: 0.5 + i * 0.05,
+    opacity: 0.2 + i * 0.04,
+    duration: 20 + i * 1.2,
   }));
 
   return (
@@ -22,15 +25,15 @@ function FloatingPaths({ position }: { position: number }) {
             stroke="currentColor"
             strokeWidth={path.width}
             strokeOpacity={path.opacity}
-            initial={{ pathLength: 0.4, opacity: 0.8 }}
-            animate={{
+            initial={{ pathLength: shouldReduceMotion ? 1 : 0.4, opacity: 0.8 }}
+            animate={shouldReduceMotion ? {} : {
               pathLength: 1,
               opacity: [0.5, 0.9, 0.5],
               pathOffset: [0, 1, 0],
             }}
             transition={{
               duration: path.duration,
-              repeat: Number.POSITIVE_INFINITY,
+              repeat: shouldReduceMotion ? 0 : Number.POSITIVE_INFINITY,
               ease: "linear",
             }}
           />

@@ -1,14 +1,14 @@
 export const resumeData = {
     hero: {
         name: "PRERNA M.",
-        role: "Business Management Graduate",
+        role: "PDGM Graduate",
         institution: "Indus Business Academy, Bangalore",
         image: "/images/hero-page-v2.png",
     },
     deloitte: {
         video: "/videos/deloitte-reveal.mp4",
         title: "Placed at Deloitte",
-        role: "Associate",
+        role: "Tax Consultant",
         caption: "Acceptance Video",
     },
     about: {
@@ -18,6 +18,15 @@ export const resumeData = {
             "Focused on analytical problem-solving and structured execution across academic projects, internships, and leadership roles.",
         ],
     },
+    skills: [
+        { name: "Financial Analysis", level: 94 },
+        { name: "Strategy Consulting", level: 92 },
+        { name: "Data Analytics", level: 91 },
+        { name: "Excel & Modeling", level: 95 },
+        { name: "Research", level: 97 },
+        { name: "Operations Management", level: 95 },
+        { name: "Risk Assessment", level: 93 },
+    ],
     contact: {
         email: "mprerna141@gmail.com",
         phone: "9445203939",
@@ -25,7 +34,7 @@ export const resumeData = {
     },
     academics: [
         { degree: "MSc in International Finance", institution: "O P Jindal Global University (Online)", year: "2026 (Ongoing)", score: "ACCA Accredited" },
-        { degree: "PGDM", institution: "Indus Business Academy (AICTE)", year: "2026", score: "CGPA: 9.46" },
+        { degree: "PGDM", institution: "Indus Business Academy (AICTE)", year: "2024 - 2026", score: "CGPA: 9.46" },
         { degree: "B.Com", institution: "Vellore Institute of Technology", year: "2024", score: "CGPA: 9.48" },
         { degree: "XII", institution: "Shrishti Vidhyasharam Senior Secondary School (CBSE)", year: "2021", score: "96%" },
         { degree: "X", institution: "Bhagwan Mahaveer Dayaniketan Jain School (ICSE)", year: "2019", score: "90%" },
@@ -81,6 +90,5 @@ export const resumeData = {
     positions: [
         { role: "Placement Committee Member", org: "Indus Business Academy", duration: "2024 - Present", note: "Coordinated with corporate recruiters and managed placement activities." },
         { role: "PRO, Navigators (Finance Club)", org: "Indus Business Academy", duration: "2024 - Present", note: "External communication, event promotion, and student engagement." },
-        { role: "Event Organiser and Manager - Model United Nations Conference", org: "", duration: "2023", note: "Organised and executed MUN conference; logistics and delegate coordination." },
     ],
 };

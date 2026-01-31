@@ -81,6 +81,7 @@ export default function Projects() {
                                     src={projectPreviews[activeIndex % projectPreviews.length]}
                                     alt={resumeData.projects[activeIndex]?.title ?? "Project preview"}
                                     fill
+                                    sizes="(max-width: 1024px) 0vw, 40vw"
                                     className="object-cover"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />

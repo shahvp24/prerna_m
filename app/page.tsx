@@ -8,6 +8,8 @@ import Academics from "@/components/home/Academics";
 import Internships from "@/components/home/Internships";
 import Projects from "@/components/home/Projects";
 import About from "@/components/home/About";
+import Skills from "@/components/home/Skills";
+import Timeline from "@/components/home/Timeline";
 import Certifications from "@/components/home/Certifications";
 import Achievements from "@/components/home/Achievements";
 import Activities from "@/components/home/Activities";
@@ -26,16 +28,18 @@ export default function Home() {
 
   return (
     <LayoutGroup>
-      <main className="min-h-screen bg-background">
+      <main id="main-content" className="min-h-screen bg-background">
         {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
 
         <div
-          aria-hidden={isLoading}
+          aria-hidden={isLoading ? "true" : undefined}
           className={`transition-opacity duration-700 ${isLoading ? "opacity-0 pointer-events-none select-none" : "opacity-100"}`}
         >
           <Hero />
           <About />
+          <Skills />
           <DeloitteReveal />
+          <Timeline />
           <Academics />
           <Internships />
           <Projects />

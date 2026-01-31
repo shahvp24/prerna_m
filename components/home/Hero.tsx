@@ -87,6 +87,7 @@ export default function Hero() {
                         alt={resumeData.hero.name}
                         fill
                         priority
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                         className="object-contain object-center"
                     />
                 </motion.div>

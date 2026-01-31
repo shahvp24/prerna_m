@@ -19,7 +19,29 @@ export default function Academics() {
                 </motion.h2>
             </div>
 
-            <div className="overflow-x-auto">
+            {/* Mobile: Card View */}
+            <div className="md:hidden space-y-4">
+                {resumeData.academics.map((item, index) => (
+                    <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                        className="p-5 bg-background rounded-xl border border-muted/20"
+                    >
+                        <h3 className="font-display text-lg text-foreground mb-1">{item.degree}</h3>
+                        <p className="text-foreground/70 text-sm mb-3">{item.institution}</p>
+                        <div className="flex justify-between items-center">
+                            <span className="text-foreground/50 text-xs uppercase tracking-wider">{item.year}</span>
+                            <span className="text-accent font-semibold text-sm">{item.score}</span>
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+
+            {/* Desktop: Table View */}
+            <div className="hidden md:block overflow-x-auto">
                 <table className="w-full text-left font-body">
                     <thead>
                         <tr className="border-b border-accent/30">

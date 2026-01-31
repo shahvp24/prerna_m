@@ -17,7 +17,7 @@ export default function DeloitteReveal() {
                 if (entry.isIntersecting) {
                     const playPromise = video.play();
                     if (playPromise && typeof playPromise.catch === "function") {
-                        playPromise.catch(() => {});
+                        playPromise.catch(() => { });
                     }
                 } else {
                     video.pause();
@@ -59,10 +59,11 @@ export default function DeloitteReveal() {
             >
                 <video
                     ref={videoRef}
-                    autoPlay
                     loop
+                    muted
                     playsInline
                     controls
+                    preload="none"
                     className="h-full w-full object-contain"
                 >
                     <source src={resumeData.deloitte.video} type="video/mp4" />

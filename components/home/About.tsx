@@ -16,12 +16,13 @@ export default function About() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="relative aspect-[3/4] w-full max-w-md mx-auto md:mx-0 overflow-hidden grayscale hover:grayscale-0 transition-all duration-700"
+                    className="relative aspect-[3/4] w-full max-w-md mx-auto md:mx-0 overflow-hidden"
                 >
                     <Image
                         src="/images/Herself-1.jpeg"
                         alt="Prerna M."
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover"
                     />
                 </motion.div>

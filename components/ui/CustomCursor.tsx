@@ -9,22 +9,29 @@ export default function CustomCursor() {
     const cursorX = useMotionValue(-100);
     const cursorY = useMotionValue(-100);
 
-    // We'll track specific hover states for basic elements independently if needed,
-    // but primarily rely on cursorVariant from context.
     const [isHoveringLink, setIsHoveringLink] = useState(false);
+    const [isTouchDevice, setIsTouchDevice] = useState<boolean | null>(null); // null = not yet determined
 
     const springConfig = { damping: 35, stiffness: 400, mass: 1 };
     const cursorXSpring = useSpring(cursorX, springConfig);
     const cursorYSpring = useSpring(cursorY, springConfig);
 
     useEffect(() => {
+        // Detect touch device - only check pointer: coarse for more accurate detection
+        const isTouch = window.matchMedia('(pointer: coarse)').matches &&
+            !window.matchMedia('(pointer: fine)').matches;
+        setIsTouchDevice(isTouch);
+    }, []);
+
+    useEffect(() => {
+        // Wait for touch detection to complete
+        if (isTouchDevice === null || isTouchDevice === true) return;
+
         const moveCursor = (e: MouseEvent) => {
             cursorX.set(e.clientX);
             cursorY.set(e.clientY);
         };
 
-        // Add listeners for basic interactive elements to auto-trigger "button" state
-        // if not already overridden by specific context usage.
         const handleMouseOver = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
             if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a') || target.closest('button')) {
@@ -41,7 +48,10 @@ export default function CustomCursor() {
             window.removeEventListener("mousemove", moveCursor);
             window.removeEventListener("mouseover", handleMouseOver);
         };
-    }, [cursorX, cursorY]);
+    }, [cursorX, cursorY, isTouchDevice]);
+
+    // Don't render until we know device type, or if touch device
+    if (isTouchDevice === null || isTouchDevice === true) return null;
 
     const variants = {
         default: {
@@ -59,7 +69,7 @@ export default function CustomCursor() {
         text: {
             width: 100,
             height: 100,
-            backgroundColor: "#C7A46B", // Gold for text view
+            backgroundColor: "#C7A46B",
             mixBlendMode: "normal" as const,
             color: "#0B0B0B"
         }
